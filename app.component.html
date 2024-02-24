@@ -1,0 +1,24 @@
+<!-- src/app/app.component.html -->
+<div class="app">
+  <h1>Star Wars Planets</h1>
+  <div class="planets-container">
+    <div *ngFor="let planet of planets" class="planet-card">
+      <h2>{{ planet.name }}</h2>
+      <p><strong>Climate:</strong> {{ planet.climate }}</p>
+      <p><strong>Population:</strong> {{ planet.population }}</p>
+      <p><strong>Terrain:</strong> {{ planet.terrain }}</p>
+      <div class="residents-list">
+        <strong>Residents:</strong>
+        <ul>
+          <li *ngIf="residents[planet.name]?.length === 0">No residents</li>
+          <li *ngFor="let resident of residents[planet.name]">
+            {{ resident.name }}, {{ resident.height }}cm, {{ resident.mass }}kg, {{ resident.gender }}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <button *ngIf="nextPage" (click)="loadMorePlanets()" class="load-more-btn">
+    Load More Planets
+  </button>
+</div>
